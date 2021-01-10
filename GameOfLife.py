@@ -45,7 +45,6 @@ class GameOfLife:
 
             for i in range(0, len(self.cells)):
                 for j in range(0, len(self.cells[i])):
-                    print(self.cells[i][j],i,j)
                     p.draw.rect(self.root, (255 * self.cells[i][j] % 256, 0, 0), [i * 20, j * 20, 20, 20])
             # Обновляем экран
             p.display.update()
