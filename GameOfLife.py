@@ -28,25 +28,28 @@ class GameOfLife:
         return count
 
     def run(self):
+        """
+        This method run Game of Life
+        """
         while True:
-            # Заполняем экран белым цветом
             self.root.fill(WHITE)
 
-            # Рисуем сетку
+            # draw grid
             for i in range(0, self.root.get_height() // 20):
                 p.draw.line(self.root, BLACK, (0, i * 20), (self.root.get_width(), i * 20))
             for j in range(0, self.root.get_width() // 20):
                 p.draw.line(self.root, BLACK, (j * 20, 0), (j * 20, self.root.get_height()))
-           # Нужно чтобы виндовс не думал что программа "не отвечает"
+
             for i in p.event.get():
                 if i.type == QUIT:
                     quit()
-            # Проходимся по всем клеткам
 
+            # go over cells
             for i in range(0, len(self.cells)):
                 for j in range(0, len(self.cells[i])):
                     p.draw.rect(self.root, (255 * self.cells[i][j] % 256, 0, 0), [i * 20, j * 20, 20, 20])
-            # Обновляем экран
+
+            # update screen
             p.display.update()
             self.cells2 = [[0 for j in range(len(self.cells[0]))] for i in range(len(self.cells))]
             for i in range(len(self.cells)):
@@ -62,3 +65,4 @@ class GameOfLife:
                         continue
                     self.cells2[i][j] = 0
             self.cells = self.cells2
+            time.sleep(0.05)
